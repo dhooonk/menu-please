@@ -1,5 +1,7 @@
 # 메뉴를 부탁해 🍳
 
+**Live**: <https://menu-please-app.vercel.app>
+
 냉장고 안의 재료로 무엇을 해먹을지 ChatGPT에게 빠르게 물어보고, 추천받은 메뉴의 레시피를 한 번에 검색하는 웹앱.
 
 - 백엔드 없음, 100% 클라이언트 (모든 상태는 브라우저 `localStorage`)
@@ -49,6 +51,14 @@ npm run dev    # http://localhost:3000
 npm run build
 npm start
 ```
+
+## 배포
+
+- 호스팅: **Vercel Hobby** (무료)
+- 라이브 URL: <https://menu-please-app.vercel.app>
+- 자동 배포: GitHub `main` 브랜치에 push 하면 Vercel 이 1~2분 내 빌드·배포. 빌드 실패 시 직전 배포 유지(무중단).
+- 빌드 설정: `next build` 자동 감지, 별도 `vercel.json` 불필요.
+- 커스텀 도메인 연결: Vercel 프로젝트의 Settings → Domains 에서 추가, DNS 레코드 안내대로 등록 → HTTPS 자동 발급.
 
 ## 디렉터리 구조
 
