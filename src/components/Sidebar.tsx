@@ -23,7 +23,12 @@ const NAV: { href: string; label: string; emoji: string }[] = [
   { href: "/settings", label: "설정", emoji: "⚙️" },
 ];
 
-export function Sidebar() {
+type SidebarProps = {
+  open?: boolean;
+  onClose?: () => void;
+};
+
+export function Sidebar({ open = false, onClose }: SidebarProps = {}) {
   const pathname = usePathname();
   const router = useRouter();
   const [selected, setSelected] = useLocalStorage<SelectedMap>(
@@ -60,10 +65,22 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="flex h-screen w-72 flex-col border-r border-stone-200 bg-white p-4">
+    <aside
+      className={`fixed inset-y-0 left-0 z-40 flex h-screen w-72 flex-col border-r border-stone-200 bg-white p-4 transition-transform duration-200 ease-out md:static md:translate-x-0 ${
+        open ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
       <div className="mb-6 flex items-center gap-2 px-2">
         <span className="text-2xl">🍳</span>
         <h1 className="text-lg font-bold text-stone-800">메뉴를 부탁해</h1>
+        <button
+          type="button"
+          aria-label="메뉴 닫기"
+          onClick={onClose}
+          className="ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-stone-500 hover:bg-stone-100 md:hidden"
+        >
+          ✕
+        </button>
       </div>
 
       <nav className="mb-5 flex flex-col gap-0.5">
@@ -73,6 +90,7 @@ export function Sidebar() {
             <Link
               key={href}
               href={href}
+              onClick={onClose}
               className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition ${
                 active
                   ? "bg-brand-100 text-brand-700 font-semibold"
