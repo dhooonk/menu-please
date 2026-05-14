@@ -5,6 +5,9 @@ import { AppShell } from "@/components/AppShell";
 export const metadata: Metadata = {
   title: "메뉴를 부탁해",
   description: "냉장고 재료로 메뉴를 추천받아보세요",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
